@@ -56,6 +56,11 @@
             <artifactId>primefaces</artifactId>
             <version>11.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.3.17</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -65,6 +70,11 @@
                 <version>${joinfaces.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces</groupId>
+                <artifactId>primefaces</artifactId>
+                <version>11.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

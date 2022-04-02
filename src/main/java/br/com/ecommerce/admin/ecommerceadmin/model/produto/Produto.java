@@ -3,11 +3,13 @@ package br.com.ecommerce.admin.ecommerceadmin.model.produto;
 import br.com.ecommerce.admin.ecommerceadmin.model.BaseEntity;
 import br.com.ecommerce.admin.ecommerceadmin.model.categoria.Categoria;
 import br.com.ecommerce.admin.ecommerceadmin.model.fornecedor.Fornecedor;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Data
 public class Produto extends BaseEntity {
 
     public Produto(Integer id, BigDecimal preco, String nome) {
@@ -17,10 +19,12 @@ public class Produto extends BaseEntity {
     }
 
     public Produto() {
+        this.categoria = new Categoria();
+        this.fornecedor = new Fornecedor();
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(nullable = false)
@@ -38,51 +42,8 @@ public class Produto extends BaseEntity {
     @Column(name = "estoque", columnDefinition = "integer default 0")
     private Integer quantidadeEstoque;
 
-    public Integer getId() {
-        return id;
-    }
+    @Lob
+    private byte[] imagem;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-    public Integer getQuantidadeEstoque() {
-        return quantidadeEstoque;
-    }
-
-    public void setQuantidadeEstoque(Integer estoque) {
-        this.quantidadeEstoque = estoque;
-    }
-
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
-    }
 }

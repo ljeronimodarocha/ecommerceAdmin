@@ -2,14 +2,16 @@ package br.com.ecommerce.admin.ecommerceadmin.model.categoria;
 
 import br.com.ecommerce.admin.ecommerceadmin.model.BaseEntity;
 import br.com.ecommerce.admin.ecommerceadmin.model.produto.Produto;
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 public class Categoria extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     private String nome;
@@ -17,27 +19,8 @@ public class Categoria extends BaseEntity {
     @ManyToOne
     private Produto produto;
 
-    public String getNome() {
+    @Override
+    public String toString() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
     }
 }

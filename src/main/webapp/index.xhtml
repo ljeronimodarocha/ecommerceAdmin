@@ -7,9 +7,35 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <f:view>
+    <h:head>
+
+    </h:head>
     <h:body>
-        <h:outputText value="teste" />
-     
+        <h:form>
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+            <p:outputLabel value="Cadastro um novo Produto"/>
+            <p:panelGrid columns="2">
+                <label for="nome">Nome do produto</label>
+                <p:inputText id="nome" type="text" value="#{cadProdutoManageBean.produto.nome}"/>
+                <p:outputLabel for="categoria">Categoria</p:outputLabel>
+                <h:selectOneMenu id="categoria" value="#{cadProdutoManageBean.produto.categoria.id}">
+                    <f:selectItems value="#{cadProdutoManageBean.listCategoria}" var="categoria"
+                                    itemLabel="#{categoria.nome}" itemValue="#{categoria.id}"/>
+                </h:selectOneMenu>
+                <p:outputLabel for="fornecedor">Fornecedor</p:outputLabel>
+                <h:selectOneMenu id="fornecedor" value="#{cadProdutoManageBean.produto.fornecedor.id}">
+                    <f:selectItems value="#{cadProdutoManageBean.listFornecedor}" var="fornecedor"
+                                   itemLabel="#{fornecedor.nome}" itemValue="#{fornecedor.id}"/>
+                </h:selectOneMenu>
+                <label for="preco">Preço</label>
+                <p:inputNumber value="#{cadProdutoManageBean.produto.preco}" id="preco" symbol="R$"/>
+            </p:panelGrid>
+            <h:commandButton id="salvar" value="Cadastrar produto"
+                       style="margin: 15px"      actionListener="#{cadProdutoManageBean.salvar}"/>
+        </h:form>
+
     </h:body>
 </f:view>
 </html>

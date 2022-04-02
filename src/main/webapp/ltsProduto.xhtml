@@ -8,13 +8,25 @@
       xmlns:p="http://primefaces.org/ui">
 <f:view>
     <h:body>
-        <h:outputText value="teste" />
-        <br />
-        <ui:repeat value="${produtoManageBean.listaProdutos}" var="produto" >
-            <h:outputText value="#{produto.nome}" /> <br />
-            <h:outputText value="#{produto.categoria.nome}" /> <br />
-            <h:outputText value="#{produto.preco}" /> <br />
-        </ui:repeat>
+        <p:dataTable var="car" value="#{lstProdutoManageBean.listaProdutos}"
+                     filteredValue="${lstProdutoManageBean.produtosFiltrados}">
+
+            <p:column headerText="Id" rendered="false"/>
+            <p:column headerText="Nome"><br/>
+                <h:outputText value="#{car.nome}"/><br />
+            </p:column>
+            <p:column headerText="Preco"><br/>
+                <h:outputText value="#{car.preco}"/><br />
+            </p:column>
+            <p:column headerText="Categoria"><br/>
+                <h:outputText value="#{car.categoria.nome}"/><br />
+            </p:column>
+            <p:column filterBy="${car.quantidadeEstoque}" headerText="Quantidade em estoque"><br/>
+                <h:outputText value="#{car.quantidadeEstoque}"/><br />
+                <f:ajax event="keyup" execute=""/>
+            </p:column>
+
+        </p:dataTable>
     </h:body>
 </f:view>
 </html>

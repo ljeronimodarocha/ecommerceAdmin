@@ -3,14 +3,16 @@ package br.com.ecommerce.admin.ecommerceadmin.model.fornecedor;
 
 import br.com.ecommerce.admin.ecommerceadmin.model.BaseEntity;
 import br.com.ecommerce.admin.ecommerceadmin.model.produto.Produto;
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 public class Fornecedor extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(nullable = false, length = 45)
@@ -26,24 +28,4 @@ public class Fornecedor extends BaseEntity {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 }
