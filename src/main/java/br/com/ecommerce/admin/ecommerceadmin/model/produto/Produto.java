@@ -4,12 +4,14 @@ import br.com.ecommerce.admin.ecommerceadmin.model.BaseEntity;
 import br.com.ecommerce.admin.ecommerceadmin.model.categoria.Categoria;
 import br.com.ecommerce.admin.ecommerceadmin.model.fornecedor.Fornecedor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Data
+@EqualsAndHashCode
 public class Produto extends BaseEntity {
 
     public Produto(Integer id, BigDecimal preco, String nome) {
@@ -45,5 +47,18 @@ public class Produto extends BaseEntity {
     @Lob
     private byte[] imagem;
 
+    @Override
+    public int hashCode() {
+        return (id == null) ? 0 : id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj instanceof Produto) {
+            return ((Produto) obj).getId().equals(this.id);
+        }
+        return false;
+    }
 
 }

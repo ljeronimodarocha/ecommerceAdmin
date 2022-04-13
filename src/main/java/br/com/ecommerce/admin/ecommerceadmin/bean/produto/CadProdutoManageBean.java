@@ -24,6 +24,14 @@ public class CadProdutoManageBean {
 
     @Getter
     @Setter
+    private Categoria categoriaSelecionada;
+
+    @Getter
+    @Setter
+    private Fornecedor fornecedorSelecionado;
+
+    @Getter
+    @Setter
     private List<Categoria> listCategoria = new ArrayList<>();
     @Getter
     @Setter
@@ -49,14 +57,14 @@ public class CadProdutoManageBean {
         produto = new Produto();
     }
 
-    public void salvar() {
+    public String salvar() {
         try {
-
-            produto.setCategoria(catDAO.findById(produto.getCategoria().getId()).orElse(null));
-            produto.setFornecedor(forRepo.findById(produto.getFornecedor().getId()).orElse(null));
+            produto.setCategoria(categoriaSelecionada);
+            produto.setFornecedor(fornecedorSelecionado);
             prodtDAO.save(produto);
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
         }
+        return "/?faces-redirect=true";
     }
 }

@@ -5,15 +5,13 @@ import br.com.ecommerce.admin.ecommerceadmin.model.BaseEntity;
 import br.com.ecommerce.admin.ecommerceadmin.model.produto.Produto;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Data
 public class Fornecedor extends BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
 
     @Column(nullable = false, length = 45)
     private String cnpj;
@@ -23,9 +21,5 @@ public class Fornecedor extends BaseEntity {
 
     @ManyToOne
     private Produto produto;
-
-    public Integer getId() {
-        return id;
-    }
 
 }
